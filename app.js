@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const router = require("./router");
 require('dotenv/config');
 
 
@@ -26,9 +27,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(bodyParser.json());
 
-app.get("/", (req, res) => {
-  res.json({ message: "Server is running :D" });
-});
+
+app.use(router)
+
 
 
 app.listen(process.env.PORT, () => {
