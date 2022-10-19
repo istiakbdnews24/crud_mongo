@@ -1,10 +1,15 @@
-FROM node:latest
+FROM node:12.13.0
 
+WORKDIR /the/workdir/path
 
-COPY . .
-
+COPY package.json .
 
 RUN yarn
 
+COPY . .
 
-CMD node app.js
+EXPOSE 3001
+
+
+
+CMD ["yarn", "start"]

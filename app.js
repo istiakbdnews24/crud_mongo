@@ -29,7 +29,7 @@ app.use(bodyParser.json());
 
 app.get('/', (req, res)=>{
   res.json({
-    message:'Docker is easy'
+    message:'Docker is easy edited '
   })
 })
 
