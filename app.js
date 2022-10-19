@@ -27,11 +27,22 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(bodyParser.json());
 
+app.get('/', (req, res)=>{
+  res.json({
+    message:'Docker is easy'
+  })
+})
+
 
 app.use(router)
 
 
+const port = 3001
 
-app.listen(process.env.PORT, () => {
-  console.log(`Server is listening on port ${process.env.PORT}`);
+
+
+
+
+app.listen(port, () => {
+  console.log(`Server is listening on port ${port}`);
 });
