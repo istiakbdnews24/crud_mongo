@@ -10,7 +10,7 @@ mongoose
     useNewUrlParser: true,
   })
   .then(() => {
-    console.log("Successfully connected to the database");
+    console.log("Successfully connected to the database 18 jan");
   })
   .catch((err) => {
     console.log("Could not connect to the database. Error...", err);
