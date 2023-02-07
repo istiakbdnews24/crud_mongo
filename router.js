@@ -1,15 +1,9 @@
 const router = require("express").Router();
 
-const { signup } = require("./Controllers/userController");
-
-const { authUser}  =  require("./Controllers/authController");
+const { signup, signIn } = require("./Controllers/userController");
 
 const { getTodos, createTodos, updateTodos, deleteTodos } = require("./Controllers/todoController");
 
-
-router.get("/", (req, res) => {
-  res.json({ message: "Server is running :D" });
-});
 
 router.post("/create", createTodos);
 router.get("/get", getTodos);
@@ -18,8 +12,7 @@ router.delete("/:id", deleteTodos);
 
 
 router.post("/signup", signup);
-
-router.post('/auth', authUser);
+router.post('/signin', signIn);
 
 
 module.exports = router;

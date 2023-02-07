@@ -1,14 +1,11 @@
 const express = require("express");
-const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 require("dotenv/config");
 const router = require("./router");
 
 mongoose.Promise = global.Promise;
 mongoose
-  .connect(process.env.MONGODB_URL, {
-    useNewUrlParser: true,
-  })
+  .connect(process.env.MONGODB_URL)
   .then(() => {
     console.log("Successfully connected to the database 18 jan");
   })
@@ -19,15 +16,17 @@ mongoose
 
 const app = express();
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(express.json());
 app.use(router);
 
+
 app.get("/", (req, res) => {
+
   res.json({
     message: "Docker is easy edited ",
   });
 });
+
 
 const port = 5000;
 
