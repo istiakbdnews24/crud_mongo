@@ -6,8 +6,18 @@ const Main = () => {
   const [todos, setTodos] = useState([]);
   const [inputText, setInputText] = useState("");
 
+
   const handleChange = (e) => {
     setInputText(e.target.value);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+ 
+      e.preventDefault();
+      createTodos(inputText);
+      setInputText("");
+    }
   };
 
   const handleSubmit = (e) => {
@@ -27,12 +37,16 @@ const Main = () => {
     ]);
   };
 
-  const updateTodos = () => {
-    console.log("Hi update");
+  const updateTodos = (e) => {
+   
+    setInputText(e.target.previousSibling.lastChild.data);
+
   };
 
-  const deleteTodos = () => {
-    console.log("Hi delete");
+  const deleteTodos = (e) => {
+    let node =e.target.previousSibling.previousSibling.childNodes[2].textContent;
+    const newTodos = todos.filter((item) => item.text !== node);
+    setTodos(newTodos);
   };
 
   return (
@@ -58,13 +72,16 @@ const Main = () => {
             type="text"
             value={inputText}
             onChange={handleChange}
+            onKeyDown= {handleKeyDown}
             className="p-2 m-2"
             placeholder="Add todo"
             style={{ borderColor: "blue" }}
+            
           />
           <button
             type="button"
             onClick={handleSubmit}
+            
             className="btn btn-success p-2 mb-1"
           >
             add
